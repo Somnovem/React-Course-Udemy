@@ -132,8 +132,14 @@ function LabWrapper({ children, title }) {
 }
 
 function App() {
+  // Determine basename from PUBLIC_URL environment variable
+  // This is set based on the "homepage" field in package.json
+  // If homepage is ".", PUBLIC_URL will be empty (for root deployment)
+  // If homepage is "/React-Course-Udemy", PUBLIC_URL will be "/React-Course-Udemy"
+  const basename = process.env.PUBLIC_URL || ''
+  
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/lab/01" element={<HTMLLabViewer htmlPath="/01-vanilla-js/index.html" />} />
