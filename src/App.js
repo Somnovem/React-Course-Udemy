@@ -91,6 +91,10 @@ function Home() {
 
 // HTML Lab Viewer Component
 function HTMLLabViewer({ htmlPath }) {
+  // Prepend PUBLIC_URL to htmlPath to ensure it works with the deployment base path
+  // process.env.PUBLIC_URL will be "/React-Course-Udemy" when deployed
+  const fullPath = `${process.env.PUBLIC_URL || ''}${htmlPath}`
+  
   return (
     <div style={{ minHeight: '100vh', width: '100%' }}>
       <div style={{ padding: '1rem', background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
@@ -99,7 +103,7 @@ function HTMLLabViewer({ htmlPath }) {
         </Link>
       </div>
       <iframe 
-        src={htmlPath} 
+        src={fullPath} 
         style={{ width: '100%', height: 'calc(100vh - 60px)', border: 'none' }}
         title="HTML Lab"
       />
